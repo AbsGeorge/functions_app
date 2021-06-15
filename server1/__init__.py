@@ -1,4 +1,5 @@
 import requests  
+import random 
 import azure.functions as func
 
 from azure.cosmos import exceptions, CosmosClient, PartitionKey
@@ -30,7 +31,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # mix it up = random.sample(Username, len(Username))
     # return mix it up 
 
-    container.create_item(body={"id": str(1), "Username": Username})
+    container.create_item(body={"id": str(random.randint(1, 1000)), "Username": Username})
 
     return func.HttpResponse(Username)
 
